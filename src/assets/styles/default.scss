@@ -1,0 +1,27 @@
+$primary: #777;
+$inverted: ghostwhite;
+$accent: crimson;
+$defBlue: dodgerblue;
+
+$headlines: 'Lovelo Black';
+$regular: 'Open Sans';
+
+@font-face {
+    font-family: 'Lovelo Black';
+    src: '../fonts/Lovelo Black';
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url("https://fonts.googleapis.com/css?family=Open+Sans");
+}
+
+.page-headline {
+    font-family: $headlines;
+    color: $primary;
+}
+
+.page-content {
+    font-weight: bold;
+    color: $primary;
+}

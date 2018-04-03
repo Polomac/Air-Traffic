@@ -1,15 +1,10 @@
+@import './mixins.scss';
+
 $primary: #777;
 $inverted: ghostwhite;
 $accent: crimson;
 $defBlue: dodgerblue;
-
-$headlines: 'Lovelo Black';
-$regular: 'Open Sans';
-
-@font-face {
-    font-family: 'Lovelo Black';
-    src: '../fonts/Lovelo Black';
-}
+$bright: yellowgreen;
 
 @font-face {
     font-family: 'Open Sans';
@@ -17,11 +12,51 @@ $regular: 'Open Sans';
 }
 
 .page-headline {
-    font-family: $headlines;
     color: $primary;
+    font-weight: bold;
 }
 
 .page-content {
     font-weight: bold;
     color: $primary;
 }
+
+button{
+  position: relative;
+  overflow: hidden;
+  font-size: 0.875em;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, .3);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+}
+  
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.8;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+  
+button:focus:not(:active)::after {
+  animation: ripple 0.8s ease-out;
+}
+  

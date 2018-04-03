@@ -1,18 +1,23 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import Vuetify from 'vuetify';
+import VueGeolocation from 'vue-browser-geolocation';
+import AsyncComputed from 'vue-async-computed';
+import VueResource from 'vue-resource';
 import VModal from 'vue-js-modal';
 import App from './App';
-
-import 'vuetify/dist/vuetify.min.css';
 
 import { createRouter } from '../src/router/';
 
 Vue.config.productionTip = false;
 
-
-Vue.use(Vuetify)
+Vue.use(VueGeolocation);
+Vue.use(VueResource);
+Vue.use(VModal);
+Vue.use(AsyncComputed, {
+  errorHandler: false,
+},
+);
 
 const router = createRouter();
 

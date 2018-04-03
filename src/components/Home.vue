@@ -1,21 +1,65 @@
 <template>
   <div class="home-wrapper">
-      <div class="page-headline text-xs-center text-sm-left">Air Traffic</div>
-      <v-container>
-        <v-content v-if="!posData">
-         Can't display flights without location!
-        </v-content>
-      </v-container>
+    <div class="no-loc-notification" v-if="!posData">
+      <label class="no-loc-info">
+        Can't display data withouth location!
+      </label>
+      <i class="material-icons warning">warning</i>
+    </div>
+    <div v-if="posData.lat" class="current-position">
+      <h4>Current position</h4>
+      <div class="current-position-label">Latitude: {{posData.lat}}</div>
+      <div class="current-position-label">Longitude: {{posData.lng}}</div>
+    </div>
+    <spinner-component v-if="acList.length === 0 && posData"></spinner-component>
+    <flight-component :acList="acList" :currLng="posData.lng">
+    </flight-component>
   </div>
 </template>
 
 <script>
+import _orderBy from 'lodash/orderBy';
+import SpinnerComponent from '../components/SpinnerComponent';
+import flightComponent from '../components/flightComponent';
+
 export default {
   name: 'home',
   data() {
     return {
-      posData: null,
+      acList: [],
+      posData: 'Loading',
     };
+  },
+  components: {
+    'spinner-component': SpinnerComponent,
+    'flight-component': flightComponent,
+  },
+  methods: {
+  },
+  asyncComputed: {
+    posData: {
+      get() {
+        return this.$getLocation().then((coordinates) => {
+          this.$http.jsonp(`http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${coordinates.lat}&lng=${coordinates.lng}&fDstU=50`)
+            .then((response) => {
+            // eslint-disable-next-line
+            console.log('FLIGHT LIST ===>', response.body.acList);
+              this.acList = _orderBy(response.body.acList, 'Alt', 'Desc');
+            }).catch((error) => {
+            // eslint-disable-next-line
+            console.log(error);
+            });
+          return coordinates;
+        }).catch((e) => {
+          // eslint-disable-next-line
+          console.log(e);
+          return false;
+        });
+      },
+      default: 'Loading',
+    },
+  },
+  computed: {
   },
 };
 </script>
@@ -24,12 +68,69 @@ export default {
 @import '../assets/styles/default';
 
 .home-wrapper {
-    position: relative;
+  position: relative;
+  padding: 2em 1em 1em 1em;
 }
 
-.page-headline {
-    padding: 0.625em;
-    background: $defBlue;
-    color: $inverted;
+.no-loc-notification {
+  padding: 1em;
+  border-radius: 4px;
+  background: lighten($accent, 10%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0;
+  right: 0;
+  width: calc(100% - 2em);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  @include mqMin(768px) {
+    width: 80%;
+  }
+
+  @include mqMin(1024px) {
+    width: 60%;
+  }
+}
+
+.no-loc-info {
+  color: $inverted
+}
+
+.warning {
+  color: darken($accent, 10%);
+}
+
+.current-position {
+  background: $bright;
+  color: darken($bright, 25%);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  @include mqMin(768px) {
+    text-align: left;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h4 {
+    margin: 0;
+    padding: 0.5em 0 0 0.75em;
+  }
+}
+
+.current-position-label {
+  padding: 1em;
+  font-size: 0.875em;
+  font-weight: bold;
+
+  &:last-child {
+    padding-top: 0;
+  }
 }
 </style>

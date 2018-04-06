@@ -28,6 +28,7 @@ export default {
     return {
       acList: [],
       posData: 'Loading',
+      flightData: [],
     };
   },
   components: {
@@ -39,16 +40,8 @@ export default {
   asyncComputed: {
     posData: {
       get() {
+        // eslint-disable-next-line
         return this.$getLocation().then((coordinates) => {
-          this.$http.jsonp(`http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${coordinates.lat}&lng=${coordinates.lng}&fDstU=50`)
-            .then((response) => {
-            // eslint-disable-next-line
-            console.log('FLIGHT LIST ===>', response.body.acList);
-              this.acList = _orderBy(response.body.acList, 'Alt', 'Desc');
-            }).catch((error) => {
-            // eslint-disable-next-line
-            console.log(error);
-            });
           return coordinates;
         }).catch((e) => {
           // eslint-disable-next-line
@@ -61,6 +54,16 @@ export default {
   },
   computed: {
   },
+  created() {
+    setInterval(() => {
+      this.$http.jsonp(`http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${this.posData.lat}&lng=${this.posData.lng}&fDstU=50`)
+        .then((response) => {
+          // eslint-disable-next-line
+          console.log('RESPO', response.body.acList);
+          this.acList = _orderBy(response.body.acList, 'Alt', 'Desc');
+        });
+    }, 10000);
+  },
 };
 </script>
 
@@ -69,7 +72,7 @@ export default {
 
 .home-wrapper {
   position: relative;
-  padding: 2em 1em 1em 1em;
+  padding: 2em 1em;
 }
 
 .no-loc-notification {

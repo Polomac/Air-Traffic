@@ -56,7 +56,7 @@ export default {
   },
   created() {
     setInterval(() => {
-      this.$http.jsonp(`http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${this.posData.lat}&lng=${this.posData.lng}&fDstU=50`)
+      this.$http.jsonp(`http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${this.posData.lat}&lng=${this.posData.lng}&fDstU=500`)
         .then((response) => {
           // eslint-disable-next-line
           console.log('RESPO', response.body.acList);

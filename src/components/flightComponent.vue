@@ -8,6 +8,7 @@
       </i>
       <span class="flight-info-label">Altitude: {{item.Alt}}</span>
       <span class="flight-info-label">Flight No.: {{item.Call}}</span>
+      <span class="flight-info-label">Bearing.: {{item.Trak}}</span>
       <span class="flight-info-label end">
         <i class="material-icons"
            @click="showDetails(item)">more_vert</i>

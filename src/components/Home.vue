@@ -10,7 +10,7 @@
       <h4>Current position</h4>
       <div class="current-position-label">Latitude: {{posData.lat}}</div>
       <div class="current-position-label">Longitude: {{posData.lng}}</div>
-      <position-map :posData="posData">
+      <position-map :posData="posData" :acList="acList">
       </position-map>
     </div>
     <spinner-component v-if="acList.length === 0 && posData"></spinner-component>

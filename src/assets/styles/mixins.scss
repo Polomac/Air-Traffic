@@ -10,3 +10,11 @@
     }
   }
 }
+
+@mixin clearfix {
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}

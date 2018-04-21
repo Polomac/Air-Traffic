@@ -5,6 +5,7 @@ import VueGeolocation from 'vue-browser-geolocation';
 import AsyncComputed from 'vue-async-computed';
 import VueResource from 'vue-resource';
 import VModal from 'vue-js-modal';
+import * as VueGoogleMaps from 'vue2-google-maps';
 import App from './App';
 
 import { createRouter } from '../src/router/';
@@ -18,6 +19,13 @@ Vue.use(AsyncComputed, {
   errorHandler: false,
 },
 );
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCssJ0CHZcfPau8KJpTqwPKH90SuTp6Ht0',
+    libraries: 'places',
+  },
+});
+
 
 const router = createRouter();
 

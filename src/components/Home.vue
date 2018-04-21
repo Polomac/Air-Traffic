@@ -10,6 +10,8 @@
       <h4>Current position</h4>
       <div class="current-position-label">Latitude: {{posData.lat}}</div>
       <div class="current-position-label">Longitude: {{posData.lng}}</div>
+      <position-map :posData="posData">
+      </position-map>
     </div>
     <spinner-component v-if="acList.length === 0 && posData"></spinner-component>
     <flight-component :acList="acList" :currLng="posData.lng">
@@ -21,6 +23,7 @@
 import _orderBy from 'lodash/orderBy';
 import SpinnerComponent from '../components/SpinnerComponent';
 import flightComponent from '../components/flightComponent';
+import positionMap from '../components/positionMap';
 
 export default {
   name: 'home',
@@ -29,11 +32,16 @@ export default {
       acList: [],
       posData: 'Loading',
       flightData: [],
+      center: {
+        lat: 0,
+        lng: 0,
+      },
     };
   },
   components: {
     'spinner-component': SpinnerComponent,
     'flight-component': flightComponent,
+    'position-map': positionMap,
   },
   methods: {
   },
@@ -72,7 +80,7 @@ export default {
 
 .home-wrapper {
   position: relative;
-  padding: 2em 1em;
+  padding: 1em;
 }
 
 .no-loc-notification {
@@ -132,8 +140,8 @@ export default {
   font-size: 0.875em;
   font-weight: bold;
 
-  &:last-child {
-    padding-top: 0;
+  &:nth-child(2) {
+    padding-bottom: 0;
   }
 }
 </style>

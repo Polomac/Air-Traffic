@@ -81,6 +81,7 @@ export default {
 .home-wrapper {
   position: relative;
   padding: 1em;
+  padding-bottom: 3em;
 }
 
 .no-loc-notification {

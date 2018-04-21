@@ -3,8 +3,8 @@
     <div v-for="item in acList"
          :key="item.id"
          class="flight-info">
-      <i class="material-icons ort"
-         :class="{'ort-neg': item.Long < currLng}">airplanemode_active
+      <i class="material-icons"
+         :style="{transform: `rotate(${item.Trak}deg)`}">airplanemode_active
       </i>
       <span class="flight-info-label">Altitude: {{item.Alt}}</span>
       <span class="flight-info-label">Flight No.: {{item.Call}}</span>
@@ -96,14 +96,6 @@ export default {
       background: rgba(0, 0, 0, 0.2);
     }
   }
-}
-
-.ort {
-  transform: rotate(90deg);
-}
-
-.ort-neg {
-  transform: rotate(-90deg);
 }
 </style>
 

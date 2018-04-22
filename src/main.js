@@ -5,6 +5,7 @@ import VueGeolocation from 'vue-browser-geolocation';
 import AsyncComputed from 'vue-async-computed';
 import VueResource from 'vue-resource';
 import VModal from 'vue-js-modal';
+import Meta from 'vue-meta';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import App from './App';
 
@@ -19,6 +20,7 @@ Vue.use(AsyncComputed, {
   errorHandler: false,
 },
 );
+Vue.use(Meta);
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyCssJ0CHZcfPau8KJpTqwPKH90SuTp6Ht0',

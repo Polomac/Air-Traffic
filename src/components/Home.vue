@@ -27,6 +27,33 @@ import positionMap from '../components/positionMap';
 
 export default {
   name: 'home',
+  metaInfo: {
+    meta: [
+      // OpenGraph
+      { property: 'og:title', content: 'Air-Traffic' },
+      { property: 'og:site_name', content: 'Air Traffic' },
+      // The list of types is available here: http://ogp.me/#types
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://air-traffic.netlify.com/' },
+      { property: 'og:image', content: 'https://air-traffic.netlify.com/' },
+      // Often the same as your meta description, but not always.
+      { property: 'og:description', content: 'Air traffic on user\'s location.' },
+
+      // Twitter card
+      { name: 'twitter:card', content: 'air traffic overview' },
+      { name: 'twitter:site', content: 'https://air-traffic.netlify.com/' },
+      { name: 'twitter:title', content: 'Air Traffic' },
+      { name: 'twitter:description', content: 'Air traffic on user\'s location' },
+      // Your twitter handle, if you have one.
+      { name: 'twitter:creator', content: '@milan_polomac' },
+      { name: 'twitter:image:src', content: '../assets/images/86.jpg' },
+
+      // Google / Schema.org markup:
+      { itemprop: 'name', content: 'Air Traffic' },
+      { itemprop: 'description', content: 'Air traffic on user\'s location.' },
+      { itemprop: 'image', content: '../assets/images/86.jpg' },
+    ],
+  },
   data() {
     return {
       acList: [],

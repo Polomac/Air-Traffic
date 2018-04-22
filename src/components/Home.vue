@@ -31,11 +31,6 @@ export default {
     return {
       acList: [],
       posData: 'Loading',
-      flightData: [],
-      center: {
-        lat: 0,
-        lng: 0,
-      },
     };
   },
   components: {

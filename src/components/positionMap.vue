@@ -48,10 +48,10 @@ export default {
   methods: {
     imageFlight(x) {
       return {
-        path: 'M 0,-200 -100,50 0,-50 100,50  z',
+        path: 'M 0,-200 -100,50 -15,50 0,-50 15,50 100,50  z',
         fillColor: 'dodgerblue',
-        fillOpacity: 0.5,
-        scale: 0.2,
+        fillOpacity: 0.7,
+        scale: 0.1,
         strokeColor: 'dodgerblue',
         strokeWeight: 1,
         rotation: x,

@@ -66,6 +66,10 @@ export default {
     'position-map': positionMap,
   },
   methods: {
+    succesCallback(position) {
+      // eslint-disable-next-line
+      console.log('position success', position);
+    },
   },
   asyncComputed: {
     posData: {
@@ -93,6 +97,14 @@ export default {
           this.acList = _orderBy(response.body.acList, 'Alt', 'Desc');
         });
     }, 10000);
+    if (navigator && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.succesCallback);
+    } else {
+      // eslint-disable-next-line
+      console.log('Geolocation is not supported');
+    }
+  },
+  mounted() {
   },
 };
 </script>

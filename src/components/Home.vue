@@ -97,14 +97,14 @@ export default {
           this.acList = _orderBy(response.body.acList, 'Alt', 'Desc');
         });
     }, 10000);
+  },
+  mounted() {
     if (navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.succesCallback);
     } else {
       // eslint-disable-next-line
       console.log('Geolocation is not supported');
     }
-  },
-  mounted() {
   },
 };
 </script>

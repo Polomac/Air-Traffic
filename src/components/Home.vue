@@ -8,8 +8,8 @@
     </div>
     <div v-if="posData.lat" class="current-position">
       <h4>Current position</h4>
-      <div class="current-position-label">Latitude: {{posData.lat}}</div>
-      <div class="current-position-label">Longitude: {{posData.lng}}</div>
+      <span class="current-position-label">Latitude: {{posData.lat | shortenDigit}}</span>
+      <span class="current-position-label">Longitude: {{posData.lng | shortenDigit}}</span>
       <position-map :posData="posData" :acList="acList">
       </position-map>
     </div>
@@ -38,17 +38,20 @@ export default {
     'flight-component': flightComponent,
     'position-map': positionMap,
   },
+  filters: {
+    shortenDigit(value) {
+      value = value.toString();
+      return value.slice(0,5);
+    },
+  },
   methods: {
   },
   asyncComputed: {
     posData: {
       get() {
-        // eslint-disable-next-line
         return this.$getLocation().then((coordinates) => {
           return coordinates;
         }).catch((e) => {
-          // eslint-disable-next-line
-          console.log(e);
           return false;
         });
       },
@@ -61,8 +64,6 @@ export default {
     setInterval(() => {
       this.$http.jsonp(`https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${this.posData.lat}&lng=${this.posData.lng}&fDstU=150`)
         .then((response) => {
-          // eslint-disable-next-line
-          console.log('RESPO', response.body.acList);
           this.acList = _orderBy(response.body.acList, 'Alt', 'Desc');
         });
     }, 10000);
@@ -75,8 +76,12 @@ export default {
 
 .home-wrapper {
   position: relative;
-  padding: 1em;
-  padding-bottom: 3em;
+  padding: 0;
+  padding-bottom: 2em;
+
+  @include mqMin(768px) {
+    padding: 1em;
+  }
 }
 
 .no-loc-notification {

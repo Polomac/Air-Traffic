@@ -3,7 +3,8 @@
     <spinner :status="active"
              class="spinn"
              :size="spinnerSize"
-             :depth="spinnerDepth"></spinner>
+             :depth="spinnerDepth">
+    </spinner>
   </div>
 </template>
 
@@ -34,8 +35,19 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1000;
+
+  &::before {
+    content: "Loading Flight Data";
+    position: absolute;
+    bottom: 20%;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    
+  }
 }
 
 .spinn {

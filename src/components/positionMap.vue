@@ -3,7 +3,7 @@
     <gmap-map
       class="map"
       :center="posData"
-      :zoom="7"
+      :zoom=6
       :options="{circle: circle}">
       <gmap-marker
         id="map-center"
@@ -15,14 +15,24 @@
         </gmap-circle>
       </gmap-marker>
       <gmap-marker
+        class="gmap-marker"
         v-for="flight in acList"
         :key="flight.Id"
         id="flights"
         :position="{lat: flight.Lat, lng: flight.Long}"
         :icon="imageFlight(flight.Trak)"
-        :title="`${flight.Op}\nFrom: ${flight.From}\nTo: ${flight.To}`">
+        :title="`${flight.Op}\nFrom: ${flight.From}\nTo: ${flight.To}`"
+        :clickable="true"
+        @click="toggleInfo(flight.Id)">
+        <gmap-info-window
+          :opened="info === flight.Id"
+          @click="info = false">
+          <div class="infoOp">{{flight.Op}}</div>
+          From: {{flight.From}} <br>
+          To: From: {{flight.To}}
+        </gmap-info-window>
       </gmap-marker>
-  </gmap-map>
+    </gmap-map>
   </div>
 </template>
 
@@ -43,6 +53,8 @@ export default {
         fillOpacity: 0.1,
       },
       rotation: 0,
+      info: false,
+      currentMidx: null,
     };
   },
   methods: {
@@ -57,6 +69,14 @@ export default {
         rotation: x,
       };
     },
+    toggleInfo(id) {
+      if (this.info === id) {
+        this.info = false;
+      } else {
+        this.info = id;
+      }
+      
+    },
   },
   props: ['posData', 'acList'],
   mounted() {
@@ -70,8 +90,13 @@ export default {
   .map-container {
     position: relative;
     width: 100%;
-    height: 600px;
-    padding: 1em;
+    height: 100vh;
+    padding-top: 1em;
+
+    @include mqMin(768px) {
+      height: 600px;
+      padding: 1em;
+    }
   }
 
   .map {
@@ -79,4 +104,9 @@ export default {
     height: 100%;
     border-radius: 10px;
   }
+
+  .infoOp {
+    font-weight: bold;
+  }
+
 </style>

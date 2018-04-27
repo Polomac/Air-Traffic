@@ -76,10 +76,10 @@ export default {
 }
 
 .flight-details-content {
-  padding: 1em;
+  padding: 0.5em;
 
   .flight-detail {
-    padding: 1em 0;
+    padding: 0.5em 0;
     color: $primary;
   }
 }
@@ -143,11 +143,12 @@ export default {
   .v--modal-box {
     left: 15px !important;
     width: calc(100% - 2em) !important;
-    top: 3em !important;
+    top: 1em !important;
 
     @media screen and(min-width: 640px) {
       left: calc((100% - 600px)/2) !important;
       width: 600px !important;
+      top: 3em !important;
     }
   }
 </style>

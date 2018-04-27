@@ -1,7 +1,7 @@
 <template>
   <div class="footer-wrapper page-headline">
     <label class="app-title">
-      &copy; 2018 Polomac Milan
+      &copy; 2018 Air Traffic
     </label>
   </div>
 </template>

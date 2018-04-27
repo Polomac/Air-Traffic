@@ -64,7 +64,7 @@ export default {
     padding: 0.625em;
     background: $defBlue;
     color: $inverted;
-    margin-bottom: 0.1em;
+    margin-bottom: 1px;
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     display: flex;
@@ -77,7 +77,7 @@ export default {
 }
 
 .flight-info-label {
-  font-size: 1em;
+  font-size: 0.875em;
   padding: 0.875em 0.5em;
 
   @include mqMin(768px) {

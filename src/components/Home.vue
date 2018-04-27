@@ -7,7 +7,7 @@
       <i class="material-icons warning">warning</i>
     </div>
     <div v-if="posData.lat" class="current-position">
-      <h4>Current position</h4>
+      <h4>Current position:</h4>
       <span class="current-position-label">Latitude: {{posData.lat | shortenDigit}}</span>
       <span class="current-position-label">Longitude: {{posData.lng | shortenDigit}}</span>
       <position-map :posData="posData" :acList="acList">

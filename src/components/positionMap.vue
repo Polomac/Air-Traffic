@@ -4,7 +4,8 @@
       class="map"
       :center="posData"
       :zoom=6
-      :options="{circle: circle}">
+      :options="{circle: circle}"
+      :draggable="true">
       <gmap-marker
         id="map-center"
         :position="posData"
@@ -28,8 +29,8 @@
           :opened="info === flight.Id"
           @click="info = false">
           <div class="infoOp">{{flight.Op}}</div>
-          From: {{flight.From}} <br>
-          To: From: {{flight.To}}
+          <div class="infoLabel">From: {{flight.From}}</div>
+          <div class="infoLabel">To: {{flight.To}}</div>
         </gmap-info-window>
       </gmap-marker>
     </gmap-map>
@@ -108,5 +109,8 @@ export default {
   .infoOp {
     font-weight: bold;
   }
-
+  .infoLabel {
+    font-weight: bold;
+    font-size: 0.875em;
+  }
 </style>

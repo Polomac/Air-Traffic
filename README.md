@@ -1,6 +1,6 @@
-# air-traffic
+# Air-traffic
 
-> Air Traffic
+> Realtime graphic preview of flights above user's location.
 
 ## Build Setup
 

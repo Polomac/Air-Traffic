@@ -1,6 +1,5 @@
 <template>
   <div class="home-wrapper">
-    {{x}}
     <div class="no-loc-notification" v-if="!posData">
       <label class="no-loc-info">
         Can't display data withouth location!
@@ -61,9 +60,6 @@ export default {
     },
   },
   computed: {
-    x() {
-      return process.env.API_KEY ? process.env.API_KEY : 'KEY';
-    },
   },
   created() {
     setInterval(() => {

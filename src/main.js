@@ -21,7 +21,7 @@ Vue.use(AsyncComputed, {
 );
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBXSbBWMZtGL2whXVC7T8wFhQcwcKGRuF4',
+    key: process.env.VUE_APP_API_URL,
     libraries: 'places',
     installComponents: true,
   },

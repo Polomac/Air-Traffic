@@ -1,5 +1,6 @@
 <template>
   <div class="home-wrapper">
+    {{x}}
     <div class="no-loc-notification" v-if="!posData">
       <label class="no-loc-info">
         Can't display data withouth location!
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import _orderBy from 'lodash/orderBy';
 import SpinnerComponent from '../components/SpinnerComponent';
 import flightComponent from '../components/flightComponent';
@@ -59,6 +61,9 @@ export default {
     },
   },
   computed: {
+    x() {
+      return process.env.API_KEY ? process.env.API_KEY : 'KEY';
+    },
   },
   created() {
     setInterval(() => {

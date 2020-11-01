@@ -76,7 +76,6 @@ export default {
       } else {
         this.info = id;
       }
-      
     },
   },
   props: ['posData', 'acList'],

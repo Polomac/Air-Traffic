@@ -1,7 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import Meta from 'vue-meta';
 import VueGeolocation from 'vue-browser-geolocation';
 import AsyncComputed from 'vue-async-computed';
 import VueResource from 'vue-resource';
@@ -13,7 +12,6 @@ import { createRouter } from '../src/router/';
 
 Vue.config.productionTip = false;
 
-Vue.use(Meta);
 Vue.use(VueGeolocation);
 Vue.use(VueResource);
 Vue.use(VModal);

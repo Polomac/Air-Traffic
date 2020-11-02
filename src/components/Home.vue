@@ -7,7 +7,7 @@
       <i class="material-icons warning">warning</i>
     </div>
     <div v-if="posData.lat" class="current-position">
-      <h4>Current position:</h4>
+      <h4>Your current position:</h4>
       <span class="current-position-label">Latitude: {{posData.lat | shortenDigit}}</span>
       <span class="current-position-label">Longitude: {{posData.lng | shortenDigit}}</span>
       <position-map :posData="posData" :acList="acList">
@@ -63,7 +63,7 @@ export default {
   },
   created() {
     setInterval(() => {
-      this.$http.jsonp(`https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${this.posData.lat}&lng=${this.posData.lng}&fDstU=150`)
+      this.$http.jsonp(`https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=${this.posData.lat}&lng=${this.posData.lng}&fDstU=100`)
         .then((response) => {
           this.acList = _orderBy(response.body.acList, 'Alt', 'Desc');
         });
@@ -77,11 +77,9 @@ export default {
 
 .home-wrapper {
   position: relative;
-  padding: 0;
-  padding-bottom: 2em;
-
+  padding: 0 0 2em 0;
   @include mqMin(768px) {
-    padding: 1em;
+    padding: 1em 0 2em 0;
   }
 }
 
@@ -141,6 +139,7 @@ export default {
   padding: 1em;
   font-size: 0.875em;
   font-weight: bold;
+  margin: 0;
 
   &:nth-child(2) {
     padding-bottom: 0;

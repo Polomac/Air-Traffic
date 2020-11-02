@@ -53,7 +53,9 @@ export default {
   methods: {
     beforeOpen(event) {
       this.flight = Object.assign({}, event.params.flight);
-      this.Op = event.params.flight.Op.replace(/\s/g, '');
+      if (event.params.flight.Op) {
+        this.Op = event.params.flight.Op.replace(/\s/g, '');
+      }
     },
     closeModal() {
       this.$modal.hide('flight-details');
@@ -117,16 +119,15 @@ export default {
 }
 
 .close-modal-button {
-  position: absolute;
   background: $defBlue;
   color: $inverted;
   border: none;
   padding: 0.875em 2em;
   border-radius: 2px;
-  bottom: 1em;
-  right: 1em;
   cursor: pointer;
   transition: all 0.25s linear;
+  width: 100%;
+  margin: 20px auto 5px auto;
 
     &:hover {
       background: darken($defBlue, 10%);
